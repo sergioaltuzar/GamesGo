@@ -1,24 +1,16 @@
-//
-//  ContentView.swift
-//  GamesGo
-//
-//  Created by Sergio Altuzar on 31/01/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @State private var hasLoaded = false
 
-#Preview {
-    ContentView()
+    var body: some View {
+        Group {
+            if hasLoaded {
+                GameCatalogView()
+            } else {
+                LoadingView(hasLoaded: $hasLoaded)
+            }
+        }
+        .preferredColorScheme(.dark)
+    }
 }
