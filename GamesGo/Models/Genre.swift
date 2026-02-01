@@ -8,5 +8,5 @@
 import Foundation
 
 enum GenreConstants {
-    static let allGenresLabel = "Todos"
+    static let allGenresLabel = "All"
 }

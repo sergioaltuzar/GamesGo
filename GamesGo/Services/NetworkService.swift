@@ -1,3 +1,10 @@
+//
+//  GamesGoApp.swift
+//  GamesGo
+//
+//  Created by Sergio Altuzar on 31/01/26.
+//
+
 import Foundation
 
 protocol NetworkServiceProtocol {
@@ -25,9 +32,9 @@ enum NetworkError: Error, LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .invalidURL: "URL invalida"
-        case .badResponse: "Error en la respuesta del servidor"
-        case .decodingFailed: "Error al procesar los datos"
+        case .invalidURL: "Invalid URL"
+        case .badResponse: "Server response error"
+        case .decodingFailed: "Failed to process data"
         }
     }
 }
