@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  GamesGo
+//
+//  Created by Sergio Altuzar on 01/02/26.
+//
+
 import SwiftUI
 
 struct ContentView: View {
