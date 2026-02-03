@@ -1,13 +1,8 @@
-//
-//  GamesGoTests.swift
-//  GamesGoTests
-//
-//  Created by Sergio Altuzar on 31/01/26.
-//
-
 import Testing
+import SwiftData
 @testable import GamesGo
 
+@MainActor
 struct GamesGoTests {
     @Test func modelContainerCreation() throws {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
