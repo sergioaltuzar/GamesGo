@@ -32,14 +32,14 @@ final class GameRepository {
 
     func allActiveGames() throws -> [Game] {
         let descriptor = FetchDescriptor<Game>(
-            predicate: #Predicate<Game> { $0.isDeleted == false },
+            predicate: #Predicate<Game> { $0.isRemoved == false },
             sortBy: [SortDescriptor(\.title)]
         )
         return try modelContext.fetch(descriptor)
     }
 
     func softDelete(_ game: Game) throws {
-        game.isDeleted = true
+        game.isRemoved = true
         try modelContext.save()
     }
 

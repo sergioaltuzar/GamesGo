@@ -54,9 +54,9 @@ struct GameCatalogView: View {
             }
             .padding(.vertical, 12)
 
-//            if !viewModel.searchText.isEmpty && !viewModel.suggestions.isEmpty {
-//                suggestionsOverlay(viewModel: viewModel)
-//            }
+            if !viewModel.searchText.isEmpty && !viewModel.suggestions.isEmpty {
+                suggestionsOverlay(viewModel: viewModel)
+            }
 
             ScrollView {
                 LazyVStack(spacing: 10) {
@@ -79,37 +79,37 @@ struct GameCatalogView: View {
         }
     }
 
-//    @ViewBuilder
-//    private func suggestionsOverlay(viewModel: GameCatalogViewModel) -> some View {
-//        VStack(alignment: .leading, spacing: 0) {
-//            ForEach(viewModel.suggestions, id: \.self) { suggestion in
-//                Button {
-//                    viewModel.searchText = suggestion
-//                } label: {
-//                    HStack {
-//                        Image(systemName: "magnifyingglass")
-//                            .font(.caption)
-//                            .foregroundStyle(.white.opacity(0.4))
-////                        Text(suggestion)
-////                            .font(.subheadline)
-////                            .foregroundStyle(.white.opacity(0.8))
-//                        Spacer()
-//                    }
-//                    .padding(.horizontal, 16)
-//                    .padding(.vertical, 10)
-//                }
-//                .buttonStyle(.plain)
-//
-//                if suggestion != viewModel.suggestions.last {
-//                    Divider()
-//                        .background(Color.white.opacity(0.1))
-//                }
-//            }
-//        }
-//        .glassBackground(cornerRadius: 12)
-//        .padding(.horizontal)
-//        .padding(.bottom, 8)
-//    }
+    @ViewBuilder
+    private func suggestionsOverlay(viewModel: GameCatalogViewModel) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(viewModel.suggestions, id: \.self) { suggestion in
+                Button {
+                    viewModel.searchText = suggestion
+                } label: {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .font(.caption)
+                            .foregroundStyle(.white.opacity(0.4))
+                        Text(suggestion)
+                            .font(.subheadline)
+                            .foregroundStyle(.white.opacity(0.8))
+                        Spacer()
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                }
+                .buttonStyle(.plain)
+
+                if suggestion != viewModel.suggestions.last {
+                    Divider()
+                        .background(Color.white.opacity(0.1))
+                }
+            }
+        }
+        .glassBackground(cornerRadius: 12)
+        .padding(.horizontal)
+        .padding(.bottom, 8)
+    }
 }
 
 private struct GameDetailDestination: View {
@@ -128,7 +128,7 @@ private struct GameDetailDestination: View {
     }
 }
 
-//#Preview {
-//    GameCatalogView()
-//        .modelContainer(for: Game.self, inMemory: true)
-//}
+#Preview {
+    GameCatalogView()
+        .modelContainer(for: Game.self, inMemory: true)
+}

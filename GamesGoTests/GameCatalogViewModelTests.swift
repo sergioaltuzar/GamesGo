@@ -4,9 +4,13 @@ import SwiftData
 @testable import GamesGo
 
 @MainActor
+@Suite(.serialized)
 struct GameCatalogViewModelTests {
-    private func makeViewModel() throws -> GameCatalogViewModel {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    private func makeViewModel() throws -> (GameCatalogViewModel, ModelContainer) {
+        let config = ModelConfiguration(
+            UUID().uuidString,
+            isStoredInMemoryOnly: true
+        )
         let container = try ModelContainer(for: Game.self, configurations: config)
         let context = container.mainContext
         let repository = GameRepository(modelContext: context)
@@ -22,58 +26,66 @@ struct GameCatalogViewModelTests {
 
         let vm = GameCatalogViewModel(repository: repository)
         vm.loadGames()
-        return vm
+        return (vm, container)
     }
 
     @Test func filteredGamesByGenre() throws {
-        let vm = try makeViewModel()
+        let (vm, container) = try makeViewModel()
         vm.selectedGenre = "Shooter"
         #expect(vm.filteredGames.count == 1)
         #expect(vm.filteredGames[0].title == "World of Tanks")
+        withExtendedLifetime(container) {}
     }
 
     @Test func filteredGamesBySearchText() throws {
-        let vm = try makeViewModel()
+        let (vm, container) = try makeViewModel()
         vm.searchText = "Genshin"
         #expect(vm.filteredGames.count == 1)
         #expect(vm.filteredGames[0].title == "Genshin Impact")
+        withExtendedLifetime(container) {}
     }
 
     @Test func combinedGenreAndSearchFilter() throws {
-        let vm = try makeViewModel()
+        let (vm, container) = try makeViewModel()
         vm.selectedGenre = "MMORPG"
         vm.searchText = "Daunt"
         #expect(vm.filteredGames.count == 1)
+        withExtendedLifetime(container) {}
     }
 
-    @Test func genresListIncludesTodos() throws {
-        let vm = try makeViewModel()
+    @Test func genresListIncludesAll() throws {
+        let (vm, container) = try makeViewModel()
         #expect(vm.genres.first == GenreConstants.allGenresLabel)
-        #expect(vm.genres.count == 4) // Todos + MMORPG + RPG + Shooter
+        #expect(vm.genres.count == 4) // All + MMORPG + RPG + Shooter
+        withExtendedLifetime(container) {}
     }
 
     @Test func allGenresShowsAllGames() throws {
-        let vm = try makeViewModel()
+        let (vm, container) = try makeViewModel()
         vm.selectedGenre = GenreConstants.allGenresLabel
         #expect(vm.filteredGames.count == 3)
+        withExtendedLifetime(container) {}
     }
 
     @Test func suggestionsReturnMatchingTitles() throws {
-        let vm = try makeViewModel()
+        let (vm, container) = try makeViewModel()
         vm.searchText = "World"
         #expect(vm.suggestions.contains("World of Tanks"))
+        withExtendedLifetime(container) {}
     }
 
     @Test func suggestionsEmptyWhenNoSearch() throws {
-        let vm = try makeViewModel()
+        let (vm, container) = try makeViewModel()
         vm.searchText = ""
         #expect(vm.suggestions.isEmpty)
+        withExtendedLifetime(container) {}
     }
 
     @Test func searchByGenreName() throws {
-        let vm = try makeViewModel()
+        let (vm, container) = try makeViewModel()
         vm.searchText = "Shooter"
         #expect(vm.filteredGames.count == 1)
         #expect(vm.filteredGames[0].title == "World of Tanks")
+        withExtendedLifetime(container) {}
     }
 }

@@ -24,7 +24,7 @@ final class Game {
     var releaseDate: String
     var freetogameProfileURL: String
     var userNotes: String
-    var isDeleted: Bool
+    var isRemoved: Bool
 
     init(
         apiId: Int,
@@ -39,7 +39,7 @@ final class Game {
         releaseDate: String,
         freetogameProfileURL: String,
         userNotes: String = "",
-        isDeleted: Bool = false
+        isRemoved: Bool = false
     ) {
         self.apiId = apiId
         self.title = title
@@ -53,6 +53,6 @@ final class Game {
         self.releaseDate = releaseDate
         self.freetogameProfileURL = freetogameProfileURL
         self.userNotes = userNotes
-        self.isDeleted = isDeleted
+        self.isRemoved = isRemoved
     }
 }
