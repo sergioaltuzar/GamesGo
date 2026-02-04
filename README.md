@@ -1,8 +1,33 @@
-# GamesGo
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9335b8bb-35dc-4c47-974e-82524fe5c2d1" width="128" height="128" style="border-radius: 22%;">
+</p>
+
+<h1 align="center">GamesGo</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/iOS-18.0%2B-blue.svg" alt="iOS 18.0+">
+  <img src="https://img.shields.io/badge/Swift-6.0-orange.svg" alt="Swift 6.0">
+  <img src="https://img.shields.io/badge/SwiftData-Supported-green.svg" alt="SwiftData">
+</p>
 
 A free-to-play video game catalog app for iOS built with SwiftUI and SwiftData. The app downloads game data from the [FreeToGame API](https://www.freetogame.com/api-doc), stores it locally, and provides browsing, searching, filtering, and personal note-taking features — all with zero third-party dependencies.
 
 ## Screenshots
+
+<table style="width: 100%; border-collapse: collapse; border: none;">
+  <tr>
+    <td align="center" style="width: 32%; border: none;">
+      <img src="https://github.com/user-attachments/assets/a9dd91a5-4a2a-45c3-abb9-9d0404291479" alt="Screenshot 1" style="width: 100%;">
+    </td>
+    <td align="center" style="width: 32%; border: none;">
+      <img src="https://github.com/user-attachments/assets/67a0d3eb-c295-450d-ac2c-3a884d290946" alt="Screenshot 2" style="width: 100%;">
+    </td>
+    <td align="center" style="width: 32%; border: none;">
+      <img src="https://github.com/user-attachments/assets/46873cae-708b-4e63-bc18-bcb5412eacbd" alt="Screenshot 3" style="width: 100%;">
+    </td>
+  </tr>
+</table>
+
 
 The app features a dark futuristic UI with three main screens:
 
@@ -99,6 +124,18 @@ The test suite contains **47 tests** across 6 test files using the **Swift Testi
 | `LoadingViewModelTests.swift` | 6 | `needsDownload` states, download success/failure, retry resets error, initial state |
 | `GameCatalogViewModelTests.swift` | 8 | Genre filtering, text search, combined filters, genre list generation, "All" genre, suggestions (matching + empty), search by genre name |
 | `GameDetailViewModelTests.swift` | 7 | Save notes, delete game, initial state, empty notes, delete + notes interaction, deleted game exclusion from active list |
+
+## Screenshots
+<table style="width: 100%; border-collapse: collapse; border: none;">
+  <tr>
+    <td align="center" valign="top" style="width: 48%; border: none;">
+  <img src="https://github.com/user-attachments/assets/37df426b-d5a5-43fc-b66f-7b012313bc6d" alt="Captura 2" style="width: 100%;">    
+    </td>
+    <td align="center" valign="top" style="width: 48%; border: none;">
+      <img src="https://github.com/user-attachments/assets/66e25b40-5155-4f78-bdab-310958956bf5" alt="Captura 1" style="width: 100%;">
+    </td>
+  </tr>
+</table>
 
 **Testing patterns used:**
 
