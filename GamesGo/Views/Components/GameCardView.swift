@@ -11,6 +11,21 @@ import SwiftData
 struct GameCardView: View {
     let game: Game
 
+    private var gameTags: [String] {
+        var tags: [String] = []
+        let genres = game.genre
+            .split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+        tags.append(contentsOf: genres)
+        if tags.count < 2 {
+            let platforms = game.platform
+                .split(separator: ",")
+                .map { $0.trimmingCharacters(in: .whitespaces) }
+            tags.append(contentsOf: platforms)
+        }
+        return Array(tags.prefix(2))
+    }
+
     var body: some View {
         HStack(spacing: 14) {
             AsyncGameImage(url: game.thumbnailURL)
@@ -27,6 +42,24 @@ struct GameCardView: View {
                     .font(.caption)
                     .foregroundStyle(.white.opacity(0.6))
                     .lineLimit(2)
+
+                HStack(spacing: 6) {
+                    ForEach(gameTags.prefix(2), id: \.self) { tag in
+                        Text(tag)
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundStyle(.white.opacity(0.85))
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 3)
+                            .background(
+                                Capsule()
+                                    .fill(AppColors.accentNeon.opacity(0.25))
+                                    .overlay(
+                                        Capsule()
+                                            .stroke(AppColors.accentNeon.opacity(0.5), lineWidth: 0.5)
+                                    )
+                            )
+                    }
+                }
             }
 
             Spacer()

@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var hasLoaded = false
+    @State private var forceReload = false
 
     var body: some View {
         Group {
             if hasLoaded {
-                GameCatalogView()
+                GameCatalogView(hasLoaded: $hasLoaded, forceReload: $forceReload)
             } else {
-                LoadingView(hasLoaded: $hasLoaded)
+                LoadingView(hasLoaded: $hasLoaded, forceReload: $forceReload)
             }
         }
         .preferredColorScheme(.dark)

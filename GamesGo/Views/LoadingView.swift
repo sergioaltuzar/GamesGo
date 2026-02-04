@@ -10,6 +10,7 @@ import SwiftData
 
 struct LoadingView: View {
     @Binding var hasLoaded: Bool
+    @Binding var forceReload: Bool
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel: LoadingViewModel?
     @State private var animateGradient = false
@@ -71,12 +72,13 @@ struct LoadingView: View {
             let vm = LoadingViewModel(repository: repository)
             viewModel = vm
 
-            if !vm.needsDownload {
+            if !forceReload && !vm.needsDownload {
                 hasLoaded = true
                 return
             }
 
             await vm.downloadCatalog()
+            forceReload = false
             if vm.errorMessage == nil {
                 hasLoaded = true
             }
@@ -85,6 +87,6 @@ struct LoadingView: View {
 }
 
 #Preview {
-    LoadingView(hasLoaded: .constant(false))
+    LoadingView(hasLoaded: .constant(false), forceReload: .constant(false))
         .modelContainer(for: Game.self, inMemory: true)
 }

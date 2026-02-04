@@ -23,9 +23,26 @@ final class GameRepository {
     }
 
     func insertGames(_ dtos: [GameDTO]) throws {
+        let existingGames = try modelContext.fetch(FetchDescriptor<Game>())
+        let existingByApiId = Dictionary(uniqueKeysWithValues: existingGames.map { ($0.apiId, $0) })
+
         for dto in dtos {
-            let game = dto.toGame()
-            modelContext.insert(game)
+            if let existing = existingByApiId[dto.id] {
+                existing.title = dto.title
+                existing.thumbnailURL = dto.thumbnail
+                existing.shortDescription = dto.shortDescription
+                existing.gameURL = dto.gameUrl
+                existing.genre = dto.genre
+                existing.platform = dto.platform
+                existing.publisher = dto.publisher
+                existing.developer = dto.developer
+                existing.releaseDate = dto.releaseDate
+                existing.freetogameProfileURL = dto.freetogameProfileUrl
+                existing.isRemoved = false
+            } else {
+                let game = dto.toGame()
+                modelContext.insert(game)
+            }
         }
         try modelContext.save()
     }

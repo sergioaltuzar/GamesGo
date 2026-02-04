@@ -110,9 +110,11 @@ struct GameDetailView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            
+            .scrollDismissesKeyboard(.immediately)
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
         }
-        
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
         .confirmationDialog(
@@ -126,7 +128,7 @@ struct GameDetailView: View {
             }
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("This game will be removed from your library.")
+            Text("This game will be removed from your library. Tap reload to show it again.")
         }
         .onDisappear {
             if !viewModel.didDelete {

@@ -9,11 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct GameCatalogView: View {
+    @Binding var hasLoaded: Bool
+    @Binding var forceReload: Bool
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel: GameCatalogViewModel?
+    @State private var navigationPath = NavigationPath()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             ZStack {
                 AppGradients.background
                     .ignoresSafeArea()
@@ -22,6 +25,10 @@ struct GameCatalogView: View {
                     catalogContent(viewModel: viewModel)
                 }
             }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
         }
         .onAppear {
             if viewModel == nil {
@@ -29,6 +36,11 @@ struct GameCatalogView: View {
                 viewModel = GameCatalogViewModel(repository: repository)
             }
             viewModel?.loadGames()
+        }
+        .onChange(of: navigationPath.count) { oldCount, newCount in
+            if newCount < oldCount {
+                viewModel?.loadGames()
+            }
         }
     }
 
@@ -70,9 +82,21 @@ struct GameCatalogView: View {
                 .padding(.horizontal)
                 .padding(.bottom, 20)
             }
+            .scrollDismissesKeyboard(.immediately)
         }
         .navigationTitle("Game Library")
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    forceReload = true
+                    hasLoaded = false
+                } label: {
+                    Image(systemName: "arrow.trianglehead.2.clockwise")
+                        .foregroundStyle(AppColors.accentNeon)
+                }
+            }
+        }
         .toolbarColorScheme(.dark, for: .navigationBar)
         .navigationDestination(for: PersistentIdentifier.self) { id in
             GameDetailDestination(gameID: id)
@@ -129,6 +153,6 @@ private struct GameDetailDestination: View {
 }
 
 #Preview {
-    GameCatalogView()
+    GameCatalogView(hasLoaded: .constant(true), forceReload: .constant(false))
         .modelContainer(for: Game.self, inMemory: true)
 }
