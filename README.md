@@ -4,6 +4,21 @@ A free-to-play video game catalog app for iOS built with SwiftUI and SwiftData. 
 
 ## Screenshots
 
+<table style="width: 100%; border-collapse: collapse; border: none;">
+  <tr>
+    <td align="center" style="width: 32%; border: none;">
+      <img src="https://github.com/user-attachments/assets/a9dd91a5-4a2a-45c3-abb9-9d0404291479" alt="Screenshot 1" style="width: 100%;">
+    </td>
+    <td align="center" style="width: 32%; border: none;">
+      <img src="https://github.com/user-attachments/assets/67a0d3eb-c295-450d-ac2c-3a884d290946" alt="Screenshot 2" style="width: 100%;">
+    </td>
+    <td align="center" style="width: 32%; border: none;">
+      <img src="https://github.com/user-attachments/assets/46873cae-708b-4e63-bc18-bcb5412eacbd" alt="Screenshot 3" style="width: 100%;">
+    </td>
+  </tr>
+</table>
+
+
 The app features a dark futuristic UI with three main screens:
 
 1. **Loading Screen** — Animated gradient with dual spinning rings and a pulsing glow effect.
