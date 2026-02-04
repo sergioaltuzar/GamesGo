@@ -115,6 +115,18 @@ The test suite contains **47 tests** across 6 test files using the **Swift Testi
 | `GameCatalogViewModelTests.swift` | 8 | Genre filtering, text search, combined filters, genre list generation, "All" genre, suggestions (matching + empty), search by genre name |
 | `GameDetailViewModelTests.swift` | 7 | Save notes, delete game, initial state, empty notes, delete + notes interaction, deleted game exclusion from active list |
 
+## Screenshots
+<table style="width: 100%; border-collapse: collapse; border: none;">
+  <tr>
+    <td align="center" valign="top" style="width: 48%; border: none;">
+      <img src="https://github.com/user-attachments/assets/66e25b40-5155-4f78-bdab-310958956bf5" alt="Captura 1" style="width: 100%;">
+    </td>
+    <td align="center" valign="top" style="width: 48%; border: none;">
+      <img src="https://github.com/user-attachments/assets/37df426b-d5a5-43fc-b66f-7b012313bc6d" alt="Captura 2" style="width: 100%;">
+    </td>
+  </tr>
+</table>
+
 **Testing patterns used:**
 
 - **Protocol-based mocking**: `MockNetworkService` conforms to `NetworkServiceProtocol` for ViewModel tests.
