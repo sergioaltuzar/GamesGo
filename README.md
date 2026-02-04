@@ -1,13 +1,13 @@
 <p align="center">
-  <img src="<img width="1080" height="1080" alt="GameGoLogo" src="https://github.com/user-attachments/assets/9335b8bb-35dc-4c47-974e-82524fe5c2d1" />
-  " width="128" height="128" style="border-radius: 22%;">
-  <h1 align="center">GamesGo</h1>
+  <img src="https://github.com/user-attachments/assets/9335b8bb-35dc-4c47-974e-82524fe5c2d1" width="128" height="128" style="border-radius: 22%;">
 </p>
 
+<h1 align="center">GamesGo</h1>
+
 <p align="center">
-    <img src="https://img.shields.io/badge/iOS-18.0%2B-blue.svg" alt="iOS 18.0+">
-    <img src="https://img.shields.io/badge/Swift-6.0-orange.svg" alt="Swift 6.0">
-    <img src="https://img.shields.io/badge/SwiftData-Supported-green.svg" alt="SwiftData">
+  <img src="https://img.shields.io/badge/iOS-18.0%2B-blue.svg" alt="iOS 18.0+">
+  <img src="https://img.shields.io/badge/Swift-6.0-orange.svg" alt="Swift 6.0">
+  <img src="https://img.shields.io/badge/SwiftData-Supported-green.svg" alt="SwiftData">
 </p>
 
 A free-to-play video game catalog app for iOS built with SwiftUI and SwiftData. The app downloads game data from the [FreeToGame API](https://www.freetogame.com/api-doc), stores it locally, and provides browsing, searching, filtering, and personal note-taking features — all with zero third-party dependencies.
