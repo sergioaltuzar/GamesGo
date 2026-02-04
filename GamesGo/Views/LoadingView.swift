@@ -175,15 +175,18 @@ struct LoadingView: View {
             let vm = LoadingViewModel(repository: repository)
             viewModel = vm
 
-            if !forceReload && !vm.needsDownload {
-                hasLoaded = true
-                return
+            let minDisplay = Task {
+                try? await Task.sleep(for: .seconds(3))
             }
 
-            await vm.downloadCatalog()
-            forceReload = false
+            if forceReload || vm.needsDownload {
+                await vm.downloadCatalog()
+                forceReload = false
+            }
+
+            await minDisplay.value
+
             if vm.errorMessage == nil {
-                try? await Task.sleep(for: .seconds(3))
                 hasLoaded = true
             }
         }
