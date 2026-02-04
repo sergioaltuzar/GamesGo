@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="<img width="1080" height="1080" alt="GameGoLogo" src="https://github.com/user-attachments/assets/27c8a907-e189-49a0-b582-9ae2b9bdd4be" />" width="128" height="128" style="border-radius: 22%;">
+  <img src="<img width="1080" height="1080" alt="GameGoLogo" src="https://github.com/user-attachments/assets/9335b8bb-35dc-4c47-974e-82524fe5c2d1" />
+  " width="128" height="128" style="border-radius: 22%;">
   <h1 align="center">GamesGo</h1>
 </p>
 
