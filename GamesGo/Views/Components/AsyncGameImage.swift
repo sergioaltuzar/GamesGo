@@ -59,7 +59,7 @@ struct AsyncGameImage: View {
                 image = downloaded
             }
         } catch {
-            // silently fail - placeholder shown
+
         }
         isLoading = false
     }

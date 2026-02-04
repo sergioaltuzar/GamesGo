@@ -25,7 +25,6 @@ struct LoadingView: View {
 
     var body: some View {
         ZStack {
-            // Animated gradient background
             LinearGradient(
                 colors: [
                     AppColors.gradientStart,
@@ -43,7 +42,6 @@ struct LoadingView: View {
                 }
             }
 
-            // Pulsing glow behind the ring
             Circle()
                 .fill(
                     RadialGradient(
@@ -66,14 +64,10 @@ struct LoadingView: View {
                 }
 
             VStack(spacing: 36) {
-                // Custom spinning ring
                 ZStack {
-                    // Outer ring track
                     Circle()
                         .stroke(Color.white.opacity(0.08), lineWidth: 4)
                         .frame(width: 80, height: 80)
-
-                    // Spinning arc
                     Circle()
                         .trim(from: 0, to: 0.65)
                         .stroke(
@@ -89,8 +83,6 @@ struct LoadingView: View {
                         )
                         .frame(width: 80, height: 80)
                         .rotationEffect(.degrees(ringRotation))
-
-                    // Inner ring
                     Circle()
                         .trim(from: 0, to: 0.4)
                         .stroke(
@@ -100,7 +92,6 @@ struct LoadingView: View {
                         .frame(width: 54, height: 54)
                         .rotationEffect(.degrees(-ringRotation * 0.7))
 
-                    // Center icon
                     Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 22))
                         .foregroundStyle(
@@ -121,7 +112,6 @@ struct LoadingView: View {
                     }
                 }
 
-                // Text
                 VStack(spacing: 10) {
                     Text("Loading your games" + String(repeating: ".", count: dotCount))
                         .font(.title3)
@@ -145,7 +135,6 @@ struct LoadingView: View {
                     }
                 }
 
-                // Error state
                 if let errorMessage = viewModel?.errorMessage {
                     VStack(spacing: 12) {
                         Text(errorMessage)
